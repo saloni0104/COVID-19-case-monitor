@@ -16,6 +16,7 @@ class App extends React.Component {
 
     state = {
         data: {},
+        country: ''
     }
 
     async componentDidMount() {                            //exceptional place for async in case of DidMount function i.e in front of it
@@ -25,6 +26,14 @@ class App extends React.Component {
         this.setState( {data: fetchedData});              //We need to render data in cards component so set state
     }
 
+    //This will handle the state change of the country picked
+    handleCountryChange = async ( country)  => {
+        console.log(country);
+        // fetch the data
+        // set the state
+    }
+    // we shall pass this method as a prop to the country picker
+
 
     render() {
         const { data } = this.state;                      //{data} will go as props to the card component
@@ -32,7 +41,7 @@ class App extends React.Component {
         return (
             <div className={styles.container}>
                 <Cards data ={ data } />
-                <CountryPicker />
+                <CountryPicker handleCountryChange={this.handleCountryChange} />        {/* Next destructure it in countrypicker.jsx */}
                 <Chart />
             </div>
         )
