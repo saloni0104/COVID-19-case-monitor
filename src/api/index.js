@@ -2,6 +2,10 @@ import axios from 'axios';    //axios used to make api requests
 
 const url = 'https://covid19.mathdro.id/api';
 
+
+
+
+// Cards api
 export const fetchData = async () => {     //since we will call the function in app.js
     try {
 
@@ -26,3 +30,21 @@ export const fetchData = async () => {     //since we will call the function in 
         
     }
 }
+
+//Chart api
+export const fetchDailyData = async () => {          // we will call the function in charts.jsx
+    try {
+        const { data } = await axios.get(`${url}/daily`);
+
+        const modifiedData = data.map((dailyData) => ({
+            confirmed: dailyData.confirmed.total,
+            deaths: dailyData.deaths.total,
+            date: dailyData.reportDate
+        }));
+
+        return modifiedData;
+    } catch (error) {
+
+    }
+}
+
