@@ -28,21 +28,24 @@ class App extends React.Component {
 
     //This will handle the state change of the country picked
     handleCountryChange = async ( country)  => {
-        console.log(country);
+        const fetchedData = await fetchData(country);    //similar to the didmount function to generate country specific info on cards
+     
         // fetch the data
+        this.setState( {data: fetchedData, country: country});  
+
         // set the state
     }
     // we shall pass this method as a prop to the country picker
 
 
     render() {
-        const { data } = this.state;                      //{data} will go as props to the card component
+        const { data, country } = this.state;                      //{data} will go as props to the card component
 
         return (
             <div className={styles.container}>
                 <Cards data ={ data } />
                 <CountryPicker handleCountryChange={this.handleCountryChange} />        {/* Next destructure it in countrypicker.jsx */}
-                <Chart />
+                <Chart data={data} country={country} />
             </div>
         )
     }

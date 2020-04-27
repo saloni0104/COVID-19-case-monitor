@@ -6,7 +6,12 @@ const url = 'https://covid19.mathdro.id/api';
 
 
 // Cards api
-export const fetchData = async () => {     //since we will call the function in app.js
+export const fetchData = async (country) => {     //since we will call the function in app.js
+    let changeableUrl = url;
+
+    if(country) {
+        changeableUrl = `${url}/countries/${country}`;
+    }
     try {
 
         // This returns overall Object with hell lot of info like config, data, headers, request etc.
@@ -15,7 +20,7 @@ export const fetchData = async () => {     //since we will call the function in 
         //return response;
 
         //This is the way
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(changeableUrl);
 
         const modifiedData = {
             confirmed: data.confirmed,
@@ -27,7 +32,7 @@ export const fetchData = async () => {     //since we will call the function in 
         return modifiedData;
 
     } catch (error) {
-        
+        console.log(error);
     }
 }
 
