@@ -25,7 +25,7 @@ const Chart = () => {
     });
 
     const lineChart = (
-        dailyData.length //0 by default the array is empty
+        dailyData.length !== 0 //0 by default the array is empty
          ? (
          <Line
           data = {{

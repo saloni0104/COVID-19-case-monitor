@@ -48,3 +48,15 @@ export const fetchDailyData = async () => {          // we will call the functio
     }
 }
 
+
+//CountryPicker API
+export const fetchCountries = async () => {                       // we will call function in country picker.jsx
+    try {
+        const { data : {countries} } = await axios.get(`${url}/countries`);
+
+        return countries.map((country) => country.name);            // we need just the country name
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
