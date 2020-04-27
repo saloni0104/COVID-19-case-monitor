@@ -8,7 +8,7 @@ import React from 'react';
 import { Cards, Chart, CountryPicker} from './components';
 import styles from './App.module.css' ;
 import { fetchData } from './api';    //whenever there is index file, you don't need to specify the /index, just the folder is enough
-
+import coronaImage from './images/image.png';
 
 //Best place to fetch data inside a class based component is componentDidMount
 
@@ -43,6 +43,7 @@ class App extends React.Component {
 
         return (
             <div className={styles.container}>
+                <img className={styles.image} src ={coronaImage} alt="COVID-19" />
                 <Cards data ={ data } />
                 <CountryPicker handleCountryChange={this.handleCountryChange} />        {/* Next destructure it in countrypicker.jsx */}
                 <Chart data={data} country={country} />
